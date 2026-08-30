@@ -8,14 +8,18 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: {
+        DEFAULT: "1.5rem",
+      },
+      // Landing container: 1120px at every breakpoint (Design System)
       screens: {
-        "2xl": "1400px",
+        DEFAULT: "1120px",
       },
     },
     extend: {
       colors: {
-        // Catppuccin Mocha theme colors
+        // Flat palette surfaces — HSL triples consumed by shadcn-shaped
+        // components via hsl(var(--x)). See src/styles/globals.css.
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -49,20 +53,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // jaRules brand colors
-        'jarule': {
-          50: '#f5f1ff',
-          100: '#ede5ff',
-          200: '#dccdff',
-          300: '#c4a7ff',
-          400: '#a675ff',
-          500: '#8b42ff',
-          600: '#7c1fff',
-          700: '#6b0deb',
-          800: '#5a0bc5',
-          900: '#4c0ba2',
-          950: '#2e056e',
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -70,8 +60,38 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["Inter Variable", ...fontFamily.sans],
-        mono: ["Cascadia Code", "FiraCode Nerd Font", "JetBrains Mono", ...fontFamily.mono],
+        // System stacks only — no Google Fonts, no @font-face, no CDN
+        sans: [
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif",
+        ],
+        serif: [
+          "Georgia",
+          "Iowan Old Style",
+          "Palatino Linotype",
+          "Palatino",
+          "Times New Roman",
+          "serif",
+        ],
+        mono: [
+          "ui-monospace",
+          "SF Mono",
+          "Cascadia Code",
+          "JetBrains Mono",
+          "Menlo",
+          "Consolas",
+          "monospace",
+        ],
+      },
+      boxShadow: {
+        soft: "0 10px 30px -12px rgba(0, 0, 0, 0.55)",
+        lift: "0 24px 48px -20px rgba(0, 0, 0, 0.65)",
       },
       keyframes: {
         "accordion-down": {

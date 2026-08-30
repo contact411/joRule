@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+.env*
+.wrangler/
+*.log
+
+# The repo-root .gitignore is a Python template whose bare `lib/` rule
+# would swallow website/src/lib/ entirely. Re-include the required utils.
+!src/lib/
+!src/lib/utils.ts

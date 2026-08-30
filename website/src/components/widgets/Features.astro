@@ -1,110 +1,80 @@
 ---
-const features = [
+// The three canonical feature cards (copy.md v1, verbatim).
+const cards = [
   {
-    title: "Node.js Excellence",
-    description: "fnm (Fast Node Manager) for blazing speed, XDG-compliant npm with security optimizations, curated global packages",
-    icon: "⚡",
-    details: ["40x faster than nvm", "XDG Base Directory compliance", "Curated essential packages"]
+    fnum: '01',
+    kicker: 'one standard',
+    title: 'One standard, four tools',
+    body: 'Write rules once. Cursor, Claude Code, Cline, and Roo all read the same base rules, with tool-specific overrides only where they genuinely differ.',
+    span: 'lg:col-span-4',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 20 6 12 10 4 6z"/><path d="M4 12 12 16 20 12"/><path d="M4 18 12 22 20 18"/></svg>',
   },
   {
-    title: "Git Mastery", 
-    description: "Ed25519 keys, GPG signing, delta integration, comprehensive .gitignore, legendary aliases for enhanced workflow",
-    icon: "🚀",
-    details: ["Modern cryptography", "Beautiful diffs with delta", "100+ aliases and functions"]
+    fnum: '02',
+    kicker: 'foundation · common',
+    title: 'Prompt library',
+    body: 'Foundations, PRDs, review checklists, debugging loops. Start from a template that encodes the shape of good work.',
+    span: 'lg:col-span-2',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-1.9-1.3-4.1-2-6.5-2H2v15h3.5c2.4 0 4.6.7 6.5 2 1.9-1.3 4.1-2 6.5-2H22V4h-3.5c-2.4 0-4.6.7-6.5 2z"/><path d="M12 6v15"/></svg>',
   },
   {
-    title: "Shell Perfection",
-    description: "Starship prompt with Catppuccin theme, intelligent aliases with modern replacements, powerful utility functions",
-    icon: "🎨", 
-    details: ["Sub-second startup", "Modern tool replacements", "Cross-shell compatibility"]
+    fnum: '03',
+    kicker: 'mcp servers',
+    title: 'MCP servers wired in',
+    body: 'Filesystem, git, and project-aware MCP servers land configured, not an afternoon of YAML. Your agent has context from the first turn.',
+    span: 'lg:col-span-6',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 8v4l2.5 2.5"/></svg>',
   },
-  {
-    title: "VSCode Perfection",
-    description: "Opinionated settings template, curated AI-enhanced extensions, Catppuccin theme integration",
-    icon: "🛠️",
-    details: ["50+ curated extensions", "AI assistant integration", "Productivity optimized"]
-  },
-  {
-    title: "Security First",
-    description: "Template-based configurations with secure variable substitution, zero hardcoded secrets, comprehensive protection",
-    icon: "🔒",
-    details: ["Zero hardcoded secrets", "Template-based security", "Modern key management"]
-  },
-  {
-    title: "Cross-Platform",
-    description: "True platform parity across macOS, Linux, and Windows with intelligent adaptations and native integrations",
-    icon: "🌍",
-    details: ["macOS, Linux, Windows", "Native tool integration", "Platform-specific optimizations"]
-  }
 ]
 ---
 
-<section id="features" class="py-20 bg-gradient-to-b from-background to-card/50">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">
-        Legendary Features
-      </h2>
-      <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
-        Every component has been meticulously crafted to represent the pinnacle of development environment configuration
-      </p>
+<section id="rules" class="section">
+  <div class="container relative">
+    <span class="ghost" aria-hidden="true">01</span>
+
+    <div class="sec-head">
+      <p class="overline">The rules</p>
+      <span class="sec-rule" aria-hidden="true"></span>
+      <span class="folio" aria-hidden="true">01 / 04</span>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {features.map((feature, index) => (
-        <div class="group relative bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-          <!-- Feature icon -->
-          <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-            {feature.icon}
-          </div>
-          
-          <!-- Feature content -->
-          <h3 class="text-xl font-semibold mb-3 text-foreground">
-            {feature.title}
-          </h3>
-          
-          <p class="text-muted-foreground mb-4 leading-relaxed">
-            {feature.description}
-          </p>
-          
-          <!-- Feature details -->
-          <ul class="space-y-2">
-            {feature.details.map((detail) => (
-              <li class="flex items-center text-sm text-muted-foreground">
-                <svg class="w-4 h-4 text-primary mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                {detail}
-              </li>
-            ))}
-          </ul>
+    <h2 class="max-w-[22ch]">What your agents get from day one</h2>
+    <p class="max-w-[60ch] text-muted-foreground">
+      One repo, one standard, and nothing to assemble. Each piece below lives in plain files you
+      can read, diff, and fork.
+    </p>
 
-          <!-- Hover effect -->
-          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-        </div>
-      ))}
-    </div>
-
-    <!-- Stats section -->
-    <div class="mt-20 text-center">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-        <div class="space-y-2">
-          <div class="text-3xl md:text-4xl font-bold text-primary">100+</div>
-          <div class="text-sm text-muted-foreground">Intelligent Aliases & Functions</div>
-        </div>
-        <div class="space-y-2">
-          <div class="text-3xl md:text-4xl font-bold text-primary">&lt;500ms</div>
-          <div class="text-sm text-muted-foreground">Shell Startup Time</div>
-        </div>
-        <div class="space-y-2">
-          <div class="text-3xl md:text-4xl font-bold text-primary">3</div>
-          <div class="text-sm text-muted-foreground">Platforms Supported</div>
-        </div>
-        <div class="space-y-2">
-          <div class="text-3xl md:text-4xl font-bold text-primary">∞</div>
-          <div class="text-sm text-muted-foreground">Opinionated Excellence</div>
-        </div>
-      </div>
+    <div class="mt-12 grid grid-cols-1 gap-[18px] lg:grid-cols-6">
+      {
+        cards.map((card) => (
+          <article
+            class:list={[
+              'group flex flex-col gap-5 rounded-xl border border-border bg-card p-7 transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-primary hover:shadow-soft',
+              card.span,
+            ]}
+          >
+            <div class="flex items-start justify-between gap-3">
+              <span
+                class="grid h-12 w-12 flex-none place-items-center rounded-md border border-border text-muted-foreground transition-colors duration-200 group-hover:border-primary group-hover:text-primary"
+                aria-hidden="true"
+                set:html={card.icon}
+              ></span>
+              <span class="inline-flex items-center gap-2 font-mono text-[10.5px] tracking-[0.18em] text-foreground/55">
+                <span class="h-px w-3 bg-primary" aria-hidden="true"></span>
+                {card.fnum}
+              </span>
+            </div>
+            <div>
+              <p class="mb-3 inline-flex items-center gap-2 font-mono text-[10.5px] uppercase italic tracking-[0.18em] text-muted-foreground">
+                <span class="h-[5px] w-[5px] flex-none rounded-[1px] bg-primary" aria-hidden="true"></span>
+                {card.kicker}
+              </p>
+              <h3 class="mb-2">{card.title}</h3>
+              <p class="max-w-[52ch] text-[15px] leading-relaxed text-muted-foreground">{card.body}</p>
+            </div>
+          </article>
+        ))
+      }
     </div>
   </div>
 </section>
