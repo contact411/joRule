@@ -5,22 +5,19 @@ import Features from '../components/widgets/Features.astro'
 import Philosophy from '../components/widgets/Philosophy.astro'
 import Showcase from '../components/widgets/Showcase.astro'
 import CTA from '../components/widgets/CTA.astro'
+import { DEFAULT_TITLE, DEFAULT_DESCRIPTION, SITE_URL } from '../lib/site'
 
 const metadata = {
-  title: 'jaRules - Master of All Things Smooth',
-  description: 'The most opinionated dotfiles in the Joloverse. Transform any machine into a legendary development environment in under 5 minutes.',
-  canonical: 'https://jarule.dev',
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION,
+  canonical: SITE_URL,
 }
 ---
 
 <Layout metadata={metadata}>
   <Hero />
-  
-  <Features id="features" />
-  
+  <Features />
   <Philosophy />
-  
   <Showcase />
-  
   <CTA />
 </Layout>

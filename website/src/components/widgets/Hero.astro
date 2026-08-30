@@ -1,139 +1,132 @@
 ---
-import { Button } from '../ui/button'
-import CopyCommand from './CopyCommand'
+// jaRules lander — Hero. Copy is canonical (copy.md v1); the
+// terminal transcript and commit grammar mirror the approved v5 concept.
+import { INSTALL_COMMAND, REPO_URL, BRAND, SITE_DOMAIN } from '../../lib/site'
 
-const { title = "jaRules ⚡", subtitle = "Master of All Things Smooth", description = "The most opinionated dotfiles in the Joloverse" } = Astro.props
+const tools = ['Cursor', 'Claude Code', 'Cline', 'Roo']
 ---
 
-<section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-background/80 overflow-hidden">
-  <!-- Animated background elements -->
-  <div class="absolute inset-0 overflow-hidden">
-    <div class="absolute -top-40 -right-80 w-80 h-80 bg-primary/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
-    <div class="absolute -bottom-40 -left-80 w-80 h-80 bg-accent/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse delay-1000"></div>
-    <div class="absolute top-40 left-1/2 w-60 h-60 bg-jarule-500/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse delay-500"></div>
-  </div>
+<section id="top" class="hero">
+  <div class="hero-rule" aria-hidden="true"></div>
+  <div class="hero-grid-bg" aria-hidden="true"></div>
 
-  <!-- Grid pattern overlay -->
-  <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
-
-  <div class="container mx-auto px-4 relative z-10">
-    <div class="text-center space-y-8 max-w-4xl mx-auto">
-      <!-- Main title -->
-      <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-        <span class="gradient-text">{title}</span>
-      </h1>
-      
-      <!-- Subtitle -->
-      <p class="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-medium">
-        {subtitle}
-      </p>
-      
-      <!-- Description -->
-      <p class="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-        {description}
-      </p>
-
-      <!-- Command showcase -->
-      <div class="mt-12 space-y-6">
-        <h2 class="text-xl font-semibold text-foreground mb-4">
-          The One Command to Rule Them All:
-        </h2>
-        
-        <CopyCommand 
-          command="curl -fsSL https://jarule.dev/setup | sh"
-          label="Full Installation"
-          client:load
-        />
-        
-        <!-- Modular options -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-          <CopyCommand 
-            command="curl -fsSL https://jarule.dev/setup/dotfiles | sh"
-            label="Dotfiles Only"
-            variant="outline"
-            size="sm"
-            client:load
-          />
-          <CopyCommand 
-            command="curl -fsSL https://jarule.dev/setup/rules | sh"
-            label="AI Rules Only"
-            variant="outline"
-            size="sm"
-            client:load
-          />
-          <CopyCommand 
-            command="curl -fsSL https://jarule.dev/setup/node | sh"
-            label="Node.js Only"
-            variant="outline"
-            size="sm"
-            client:load
-          />
+  <div class="container relative">
+    <div class="grid items-center gap-12 lg:grid-cols-12">
+      <div class="hero-copy lg:col-span-7">
+        <div class="sec-head">
+          <p class="overline">AI rules, versioned like code</p>
+          <span class="sec-rule" aria-hidden="true"></span>
+          <span class="folio" aria-hidden="true">{BRAND} · {SITE_DOMAIN}</span>
         </div>
-      </div>
 
-      <!-- Call-to-action buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
-        <Button 
-          variant="jarule" 
-          size="xl"
-          className="group"
-          onclick="document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })"
-        >
-          Explore Features
-          <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-          </svg>
-        </Button>
-        
-        <Button 
-          variant="outline" 
-          size="xl"
-          asChild
-        >
-          <a href="https://github.com/contact411/jaRules" target="_blank" rel="noopener noreferrer" class="flex items-center">
-            <svg class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-            View Source
+        <h1 class="mb-6">
+          Every agent works to <em>your standard.</em>
+        </h1>
+
+        <p class="lead mb-8 max-w-[60ch] text-lg text-muted-foreground">
+          A versioned repo of AI rules and prompts for Cursor, Claude Code, Cline, and Roo. One
+          command installs everything.
+        </p>
+
+        <div class="flex flex-wrap items-baseline gap-x-6 gap-y-4">
+          <code class="cmd-chip"><span class="d">$</span> {INSTALL_COMMAND}</code>
+
+          <div class="flex flex-col gap-2 font-mono text-[13px] leading-[1.7]">
+            <code class="text-muted-foreground"><span class="text-foreground/55">$</span> ./install.sh --rules-only</code>
+            <code class="text-muted-foreground"><span class="text-foreground/55">$</span> ./install.sh --dotfiles-only</code>
+          </div>
+
+          <a
+            class="inline-flex h-10 items-center gap-2 rounded-md border border-border px-5 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
+            href={REPO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read the rules<span aria-hidden="true">→</span>
           </a>
-        </Button>
+        </div>
+
+        <p class="mt-6 font-mono text-xs tracking-[0.03em] text-foreground/55">
+          macOS · Linux · Windows — safe to re-run, zero hardcoded secrets
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-2" aria-label="Supported tools">
+          {tools.map((tool) => (
+            <span
+              class="inline-flex items-center gap-[7px] rounded-full border border-border px-[13px] py-2 font-mono text-xs uppercase tracking-[0.08em]"
+            >
+              <span class="h-[5px] w-[5px] flex-none rounded-full bg-primary" aria-hidden="true"></span>
+              {tool}
+            </span>
+          ))}
+        </div>
       </div>
 
-      <!-- Statistics or features preview -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-16 border-t border-border">
-        <div class="text-center">
-          <div class="text-3xl font-bold text-primary">100+</div>
-          <div class="text-sm text-muted-foreground">Intelligent Aliases</div>
+      <div class="lg:col-span-5">
+        <div
+          class="terminal relative overflow-hidden rounded-xl border border-border bg-background shadow-lift"
+          role="img"
+          aria-label="Illustrative jaRules install transcript in a terminal window"
+        >
+          <div class="flex items-center gap-2 border-b border-border bg-card px-4 py-3">
+            <span class="h-[11px] w-[11px] rounded-full bg-destructive" aria-hidden="true"></span>
+            <span class="h-[11px] w-[11px] rounded-full bg-destructive" aria-hidden="true"></span>
+            <span class="h-[11px] w-[11px] rounded-full bg-primary" aria-hidden="true"></span>
+            <span class="ml-2.5 font-mono text-xs tracking-[0.04em] text-muted-foreground">
+              install.sh · <b class="font-semibold text-muted-foreground">zsh</b>
+            </span>
+          </div>
+
+          <div class="terminal-shell overflow-x-auto p-5 font-mono text-[13px] leading-[1.85]">
+            <div class="grid grid-cols-[30px_1fr] whitespace-nowrap">
+              <span class="select-none pr-3.5 text-right text-[10.5px] text-foreground/25" aria-hidden="true">01</span>
+              <span><span class="text-primary">$ </span><span class="t-cmd">{INSTALL_COMMAND}</span></span>
+            </div>
+            <div class="grid grid-cols-[30px_1fr] whitespace-nowrap">
+              <span class="select-none pr-3.5 text-right text-[10.5px] text-foreground/25" aria-hidden="true">02</span>
+              <span><span class="t-sub">→ </span><span class="t-sub">platform detected: macOS (arm64)</span></span>
+            </div>
+            <div class="grid grid-cols-[30px_1fr] whitespace-nowrap">
+              <span class="select-none pr-3.5 text-right text-[10.5px] text-foreground/25" aria-hidden="true">03</span>
+              <span>
+                <span class="t-sub">→ </span><span class="t-sub">rules ready for: </span
+                ><span class="t-accent">claude-code · cursor · cline · roo</span>
+              </span>
+            </div>
+            <div class="grid grid-cols-[30px_1fr] whitespace-nowrap">
+              <span class="select-none pr-3.5 text-right text-[10.5px] text-foreground/25" aria-hidden="true">04</span>
+              <span>
+                <span class="t-sub">→ </span><span class="t-sub">prompt library: </span
+                ><span class="t-accent">foundation · prd · review · debug</span>
+              </span>
+            </div>
+            <div class="grid grid-cols-[30px_1fr] whitespace-nowrap">
+              <span class="select-none pr-3.5 text-right text-[10.5px] text-foreground/25" aria-hidden="true">05</span>
+              <span>
+                <span class="t-sub">→ </span><span class="t-sub">mcp servers: </span
+                ><span class="t-accent">filesystem · git · project-aware</span>
+              </span>
+            </div>
+            <div class="grid grid-cols-[30px_1fr] whitespace-nowrap">
+              <span class="select-none pr-3.5 text-right text-[10.5px] text-foreground/25" aria-hidden="true">06</span>
+              <span>
+                <span class="t-sub">→ </span><span class="t-sub">shell &amp; git configs (</span
+                ><span class="t-dim">opt-in</span><span class="t-sub">)</span>
+              </span>
+            </div>
+            <div class="grid grid-cols-[30px_1fr] whitespace-nowrap">
+              <span class="select-none pr-3.5 text-right text-[10.5px] text-foreground/25" aria-hidden="true">07</span>
+              <span>
+                <span class="t-accent">✓ </span><span class="t-cmd">your agents now work the way you do<span class="caret"></span></span>
+              </span>
+            </div>
+          </div>
         </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-primary">3</div>
-          <div class="text-sm text-muted-foreground">Platforms</div>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-primary">&lt;500ms</div>
-          <div class="text-sm text-muted-foreground">Shell Startup</div>
-        </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-primary">∞</div>
-          <div class="text-sm text-muted-foreground">Opinionated Excellence</div>
-        </div>
+
+        <p class="mt-3.5 text-center font-mono text-[11px] tracking-[0.04em] text-foreground/55">
+          Illustrative transcript — actual output varies by machine
+        </p>
       </div>
     </div>
   </div>
-
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-    <svg class="w-6 h-6 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-    </svg>
-  </div>
 </section>
-
-<style>
-  .bg-grid-pattern {
-    background-image: 
-      linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
-    background-size: 2rem 2rem;
-  }
-</style>

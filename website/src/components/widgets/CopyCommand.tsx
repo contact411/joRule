@@ -1,22 +1,28 @@
 import React, { useState } from 'react'
 import { Button } from '../ui/button'
 import { cn } from '../../lib/utils'
-import { Copy, Check } from 'lucide-react'
 
 interface CopyCommandProps {
   command: string
-  label: string
+  label?: string
   variant?: 'default' | 'outline' | 'jarule'
   size?: 'default' | 'sm' | 'lg' | 'xl'
   className?: string
 }
 
-export default function CopyCommand({ 
-  command, 
-  label, 
+/**
+ * Concept copycard — one hairline-raised row: command text + copy action.
+ * Copy = clouds fill / midnight ink; transient Copied = turquoise fill /
+ * midnight ink (the accent's single status mark). The command renders as
+ * plain text, so the card is fully usable without JavaScript; the button
+ * only enhances it.
+ */
+export default function CopyCommand({
+  command,
+  label,
   variant = 'default',
   size = 'default',
-  className 
+  className,
 }: CopyCommandProps) {
   const [copied, setCopied] = useState(false)
 
@@ -24,57 +30,51 @@ export default function CopyCommand({
     try {
       await navigator.clipboard.writeText(command)
       setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      setTimeout(() => setCopied(false), 1600)
     } catch (error) {
-      // Fallback for older browsers
+      // Fallback for older browsers / non-secure contexts
       const textarea = document.createElement('textarea')
       textarea.value = command
+      textarea.setAttribute('readonly', '')
+      textarea.style.position = 'fixed'
+      textarea.style.opacity = '0'
       document.body.appendChild(textarea)
       textarea.select()
-      document.execCommand('copy')
+      try {
+        document.execCommand('copy')
+      } catch (e) {
+        /* never break the page */
+      }
       document.body.removeChild(textarea)
       setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      setTimeout(() => setCopied(false), 1600)
     }
   }
 
   return (
-    <div className={cn("group relative", className)}>
-      <div className="bg-card border border-border rounded-lg p-4 hover:border-primary/50 transition-all duration-200">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex-1">
-            <div className="text-sm text-muted-foreground mb-1">{label}</div>
-            <code className="text-sm md:text-base font-mono text-primary break-all">
-              {command}
-            </code>
-          </div>
-          
-          <Button
-            variant={variant}
-            size={size}
-            onClick={handleCopy}
-            className={cn(
-              "shrink-0 transition-all duration-200",
-              copied && "bg-green-600 hover:bg-green-700"
-            )}
-          >
-            {copied ? (
-              <>
-                <Check className="w-4 h-4 mr-2" />
-                Copied!
-              </>
-            ) : (
-              <>
-                <Copy className="w-4 h-4 mr-2" />
-                Copy
-              </>
-            )}
-          </Button>
-        </div>
+    <div className={cn('relative', className)}>
+      <div className="flex flex-col items-stretch gap-3 rounded-md border border-border bg-background px-4 py-3.5 pl-[18px] sm:flex-row sm:items-center sm:gap-3.5">
+        {label ? (
+          <div className="sr-only">{label}</div>
+        ) : null}
+        <code className="flex-1 font-mono text-[13.5px] leading-[1.6] text-foreground break-words min-w-0">
+          {command}
+        </code>
+
+        <Button
+          variant={variant}
+          size={size}
+          onClick={handleCopy}
+          className={cn(
+            'shrink-0',
+            copied
+              ? 'bg-primary text-primary-foreground hover:bg-primary/90'
+              : 'bg-foreground text-background hover:bg-foreground/90'
+          )}
+        >
+          {copied ? 'Copied' : 'Copy'}
+        </Button>
       </div>
-      
-      {/* Hover effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
     </div>
   )
 }

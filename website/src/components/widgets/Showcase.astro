@@ -1,170 +1,92 @@
 ---
-// This will showcase the actual dotfiles configurations
+// Scenario titles/bodies/commands are copy.md v1 VERBATIM.
+// The repo-map aside and stance line mirror the approved v5 concept.
+import { REPO_URL } from '../../lib/site'
+
+const scenarios = [
+  {
+    snum: '01',
+    title: 'Open a project',
+    body: 'New repo? jaRules reads package.json and requirements.txt, then applies the matching rules and prompts. Your agent starts with context, not a blank slate.',
+    command: './jarule ai-init --tool=claude-code --type=web-app',
+  },
+  {
+    snum: '02',
+    title: 'Ask for a PRD',
+    body: "The prompt library hands you the requirements template: scope, acceptance criteria, review checklist. You fill it in, you don't invent the shape of it.",
+    command: './jarule prompts --add=foundational-requirements',
+  },
+  {
+    snum: '03',
+    title: 'Keep it current',
+    body: 'Standards drift in settings panels. One sync command reapplies your rules, so the version you reviewed is the version your agents run.',
+    command: './jarule ai-sync',
+  },
+]
 ---
 
-<section id="showcase" class="py-20 bg-gradient-to-b from-background to-card/50">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">
-        See jaRules in Action
-      </h2>
-      <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
-        Witness the opinionated excellence in every configuration file and command
-      </p>
+<section id="practice" class="section">
+  <div class="container relative">
+    <span class="ghost" aria-hidden="true">03</span>
+
+    <div class="sec-head">
+      <p class="overline">In practice</p>
+      <span class="sec-rule" aria-hidden="true"></span>
+      <span class="folio" aria-hidden="true">03 / 04</span>
     </div>
 
-    <!-- Configuration showcases -->
-    <div class="space-y-16">
-      <!-- Git configuration showcase -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <div class="order-2 lg:order-1">
-          <h3 class="text-2xl font-bold mb-4">Git Mastery</h3>
-          <p class="text-muted-foreground mb-6">
-            Modern security standards with Ed25519 keys, GPG signing, and performance optimizations. 
-            Over 30 legendary aliases that make version control feel like poetry.
-          </p>
-          <ul class="space-y-2">
-            <li class="flex items-center text-sm">
-              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              Ed25519 SSH keys (faster & more secure than RSA)
-            </li>
-            <li class="flex items-center text-sm">
-              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              GPG commit signing for authenticity
-            </li>
-            <li class="flex items-center text-sm">
-              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              Delta integration for beautiful diffs
-            </li>
-          </ul>
-        </div>
-        <div class="order-1 lg:order-2">
-          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-            <code class="text-green-400 text-sm font-mono">
-              <div class="text-yellow-400"># jaRules' legendary Git aliases</div>
-              <div class="mt-2">git sync    <span class="text-gray-400"># Fetch & rebase on main</span></div>
-              <div>git cleanup <span class="text-gray-400"># Remove merged branches</span></div>
-              <div>git lg      <span class="text-gray-400"># Beautiful log with graph</span></div>
-              <div>git amendf  <span class="text-gray-400"># Amend without editing</span></div>
-            </code>
-          </div>
-        </div>
+    <h2 class="max-w-[22ch]">See the <em>standard</em> in action</h2>
+
+    <div class="mt-12 grid grid-cols-1 items-start gap-14 lg:grid-cols-[1.15fr_0.85fr]">
+      <div>
+        {
+          scenarios.map((scenario) => (
+            <div class="border-t border-border py-[30px] last:border-b">
+              <div class="mb-2.5 flex items-baseline gap-[18px]">
+                <span class="font-mono text-[11px] tracking-[0.18em] text-foreground/55">
+                  {scenario.snum}
+                </span>
+                <h3 class="text-[20px]">{scenario.title}</h3>
+              </div>
+              <p class="mb-4 max-w-[52ch] text-[15.5px] leading-relaxed text-muted-foreground">
+                {scenario.body}
+              </p>
+              <code class="cmd-chip"><span class="d">$</span> {scenario.command}</code>
+            </div>
+          ))
+        }
       </div>
 
-      <!-- Shell configuration showcase -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <div>
-          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-            <code class="text-green-400 text-sm font-mono">
-              <div class="text-yellow-400">$ </div>
-              <div class="text-blue-400">⚡ jarule@legendary</div> <span class="text-purple-400">~/dev/project</span> <span class="text-yellow-400">main</span>
-              <div class="mt-2 text-green-400">$ ll</div>
-              <div class="text-cyan-400">📁 src/     📄 package.json  🔧 tsconfig.json</div>
-              <div class="mt-2 text-green-400">$ serve</div>
-              <div class="text-gray-400">🚀 HTTP server running on port 8000</div>
-            </code>
-          </div>
+      <aside class="rounded-xl border border-border bg-background p-[26px] shadow-soft lg:sticky lg:top-[84px]">
+        <div class="mb-5 flex items-baseline justify-between font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+          <span>What's inside</span>
+          <span class="inline-flex items-center gap-2 text-foreground/55">
+            <span class="h-[5px] w-[5px] bg-primary" aria-hidden="true"></span>
+            repo map
+          </span>
         </div>
-        <div>
-          <h3 class="text-2xl font-bold mb-4">Shell Perfection</h3>
-          <p class="text-muted-foreground mb-6">
-            Starship prompt with Catppuccin theme, 100+ intelligent aliases with modern tool replacements,
-            and powerful utility functions that enhance your daily workflow.
-          </p>
-          <ul class="space-y-2">
-            <li class="flex items-center text-sm">
-              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              exa instead of ls (with icons & colors)
-            </li>
-            <li class="flex items-center text-sm">
-              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              bat instead of cat (syntax highlighting)
-            </li>
-            <li class="flex items-center text-sm">
-              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              fd instead of find (5x faster searching)
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Node.js configuration showcase -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <div class="order-2 lg:order-1">
-          <h3 class="text-2xl font-bold mb-4">Node.js Excellence</h3>
-          <p class="text-muted-foreground mb-6">
-            fnm (Fast Node Manager) for 40x faster version switching, XDG-compliant npm configuration,
-            and curated global packages for modern development.
-          </p>
-          <ul class="space-y-2">
-            <li class="flex items-center text-sm">
-              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              fnm over nvm (40x faster, Rust-powered)
-            </li>
-            <li class="flex items-center text-sm">
-              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              @antfu/ni for universal package management
-            </li>
-            <li class="flex items-center text-sm">
-              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              Security-optimized npm configuration
-            </li>
-          </ul>
-        </div>
-        <div class="order-1 lg:order-2">
-          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-            <code class="text-green-400 text-sm font-mono">
-              <div class="text-yellow-400"># jaRules' npm configuration</div>
-              <div class="mt-2">audit-level=moderate</div>
-              <div>save-exact=true</div>
-              <div>prefer-offline=true</div>
-              <div class="mt-2 text-yellow-400"># Global packages</div>
-              <div>@antfu/ni          <span class="text-gray-400"># Universal package manager</span></div>
-              <div>typescript         <span class="text-gray-400"># Type safety</span></div>
-              <div>@biomejs/biome      <span class="text-gray-400"># Ultra-fast linting</span></div>
-            </code>
-          </div>
-        </div>
-      </div>
+        <pre class="tree overflow-x-auto font-mono text-[13px] leading-[1.95] text-foreground">ai-rules/
+  <span class="text-foreground/55">templates/</span>      <span class="text-foreground">base + tool-specific</span>
+  <span class="text-foreground/55">prompt-library/</span> <span class="text-foreground">foundation · prd · review · debug</span>
+  <span class="text-foreground/55">mcp-servers/</span>    <span class="text-foreground">project-aware configs</span>
+config/<span class="text-foreground/55">  git · npm · shells · starship · vscode</span>
+scripts/<span class="text-foreground/55">  installers · idempotent, guarded</span>
+install.sh<span class="text-foreground/55">  entry point</span></pre>
+      </aside>
     </div>
 
-    <!-- Performance metrics -->
     <div class="mt-20 text-center">
-      <div class="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto border border-primary/20">
-        <h3 class="text-2xl font-bold mb-8 gradient-text">Performance That Speaks for Itself</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary mb-2">40x</div>
-            <div class="text-sm text-muted-foreground">Faster Node.js switching with fnm</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary mb-2">5x</div>
-            <div class="text-sm text-muted-foreground">Faster file searching with fd</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary mb-2">10x</div>
-            <div class="text-sm text-muted-foreground">Faster content search with ripgrep</div>
-          </div>
-        </div>
-      </div>
+      <p class="mx-auto max-w-[30ch] font-serif text-[24px] font-bold italic leading-[1.28] tracking-tight md:text-[32px]">
+        Your agents should learn your standards, not guess them.
+      </p>
+      <a
+        class="mt-6 inline-block border-b border-border pb-0.5 text-sm font-semibold text-primary transition-colors hover:border-foreground hover:text-foreground"
+        href={REPO_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Open source. Read the rules on GitHub →
+      </a>
     </div>
   </div>
 </section>
